@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Font Declarations */
+@font-face {
+  font-family: 'BL-Melody';
+  src: url('/fonts/BL-Melody.woff2') format('woff2'),
+       url('/fonts/BL-Melody.woff') format('woff'),
+       url('/fonts/BL-Melody.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Regular.woff2') format('woff2'),
+       url('/fonts/Lora-Regular.woff') format('woff'),
+       url('/fonts/Lora-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Variables for Fonts */
+:root {
+  --font-primary: 'BL-Melody', serif;
+  --font-secondary: 'Lora', serif;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
