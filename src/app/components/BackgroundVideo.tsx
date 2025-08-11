@@ -1,43 +1,79 @@
-// components/BackgroundVideo.tsx
 export default function BackgroundVideo() {
-    return (
-      <div className="relative w-full h-screen overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source src="/videos/background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-  
-        {/* Overlay content */}
-        <div className="relative z-10 flex items-center justify-center h-full text-white text-center px-4">
+  return (
+    <div className="video-container">
+      <video autoPlay loop muted playsInline>
+        <source src="/videos/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay content */}
+      <div className="overlay">
         <img
-            src="/images/videotxt.png"
-            alt="video text"
-            className="max-w-full h-auto w-64 md:w-96"
-            style={{height: '23rem', width: 'auto'}}
-         />
-        
-        </div>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem'}}>
-            <div style={{color: 'white'}}>
-              <h4 style={{fontWeight: 'bold', fontSize: '1.125rem', marginBottom: '0.5rem', color: 'white', fontFamily: 'BL-Melody, serif'}}>Location</h4>
-              <p style={{color: 'white', fontFamily: 'Lora, serif'}}>226, Backer street<br />Singapore</p>
-            </div>
-            <div style={{color: 'white'}}>
-              <h4 style={{fontWeight: 'bold', fontSize: '1.125rem', marginBottom: '0.5rem', color: 'white', fontFamily: 'BL-Melody, serif'}}>Open at</h4>
-              <p style={{color: 'white', fontFamily: 'Lora, serif'}}>9.00 a.m. - 1.00 a.m.<br />Everyday</p>
-            </div>
-          </div>
-        
-  
-        {/* Optional dark overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-0"></div>
+          src="/images/videotxt.png"
+          alt="video text"
+          className="video-text"
+        />
       </div>
-    );
-  }
-  
+
+      <style jsx>{`
+        .video-container {
+          position: relative;
+          width: 100%;
+          height: 100vh; /* Default desktop full height */
+          overflow: hidden;
+        }
+
+        video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          text-align: center;
+          padding: 0 1rem;
+          color: white;
+        }
+
+        .video-text {
+          max-width: 100%;
+          height: auto;
+          width: 16rem; /* Mobile size */
+        }
+
+        /* Mobile: Reduce video height */
+        @media (max-width: 767px) {
+          .video-container {
+            height: 40vh;
+          }
+
+          video {
+            height: 40vh;
+          }
+
+          .overlay {
+            height: 40vh;
+          }
+        }
+
+        /* Desktop: Bigger text for taller video */
+        @media (min-width: 768px) {
+          .video-text {
+            width: auto;
+            height: 23rem; /* Restore large height */
+            max-width: 90%;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
